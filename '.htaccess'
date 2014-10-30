@@ -1,0 +1,7 @@
+<Files ~ "^\.(htaccess|htpasswd)$">
+deny from all
+</Files>
+Options Indexes
+ErrorDocument 404 Il fait chaud et beau et ca ne marche pas !! LOL
+DirectoryIndex index.php       
+order deny,allow

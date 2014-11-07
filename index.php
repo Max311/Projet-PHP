@@ -1,3 +1,3 @@
 <?php
-	header("Location: template/home.php" )
+	require("template/home.php");
 ?>

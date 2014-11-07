@@ -2,9 +2,9 @@
     
     // It is a controller
     
-    $link = mysql_connect(getenv('REMOTE_ADDR') . ':3306', 'jeremieca', null);
+    $link = mysql_connect("localhost");
 
-    mysql_select_db('c9', $link);
+    mysql_select_db('base de donnée', $link);
     
     $result = mysql_query('SELECT id, title FROM post', $link);
     

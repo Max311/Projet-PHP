@@ -1,3 +1,6 @@
+<?php
+	$link = mysql_connect("localhost");
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -274,3 +277,7 @@
 	</div>
 </body>
 </html>
+
+<?php
+	mysql_close($link);
+?>

@@ -1,8 +1,6 @@
 <?php   
-	function open_database_connection ()
+	function stockage_result ()
 	{
-		$link = mysql_connect(getenv('IP') . ':3306', 'jeremieca', null);
-		mysql_select_db('c9', $link);
-		return $link;
+		
 	}
 ?>

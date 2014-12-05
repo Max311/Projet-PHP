@@ -1,11 +1,6 @@
-<?php   
-	function stockage_result_private ()
-	{
-		
-		
-	}
-	function stockage_result_public ()
-	{
-		$fp = fopen ("donnees.txt", "");
-	}
+<?php
+	$prenom = $_POST['prenom'];
+	$nom = $_POST['nom'];
+	$ouinon = $_POST['ouinon'];
+	print("<center>$nom $prenom $ouinon</center>"); 
 ?>

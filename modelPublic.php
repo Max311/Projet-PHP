@@ -50,27 +50,32 @@ error_reporting(E_ALL);
 		
 		if ($req = $bdd->prepare ('SELECT COUNT(*) as count FROM questionnaire'))
 		{
-			if ($value == 'oui')
+			foreach ($_POST as $key=>$value)
 			{
-				$req = $bdd->prepare ('INSERT INTO questionnaire(question,oui,non) VALUES (:question, :oui, :non)');
-				$req->execute(array(
-					'question' => $key,
-					'oui' => 1,
-					'non' => 0 ));
-			}
-			else if ($value == 'non')
-			{
-				$req = $bdd->prepare ('INSERT INTO questionnaire (question,oui,non) VALUES (:question, :oui, :non)');
-				$req->execute(array(
-					'question' => $key,
-					'non' => 1,
-					'oui' => 0 ));
+				if ($value == 'oui')
+				{
+					$req = $bdd->prepare ('INSERT INTO questionnaire(question,oui,non) VALUES (:question, :oui, :non)');
+					$req->execute(array(
+						'question' => $key,
+						'oui' => 1,
+						'non' => 0 ));
+				}
+				else if ($value == 'non')
+				{
+					$req = $bdd->prepare ('INSERT INTO questionnaire (question,oui,non) VALUES (:question, :oui, :non)');
+					$req->execute(array(
+						'question' => $key,
+						'non' => 1,
+						'oui' => 0 ));
+				}
 			}
 		}
 	}
 	recupDonneesBDD();
-
-	function updateDonneesBDD()
+	
+	
+	
+	/*function updateDonneesBDD()
 	{
 		if ($value == 'oui'){
 		$req= $bdd ->prepare('UPDATE questionnaire SET oui = :value ');
@@ -84,7 +89,6 @@ error_reporting(E_ALL);
 			$req->execute(array(
 				'value' => ++))
 		}
-	}
-
+	}*/
 	
 	?>

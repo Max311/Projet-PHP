@@ -1,5 +1,5 @@
 <?php
-	function recupDonnees()
+	function recupDonneesFichier()
 	{
 		//chargement donnée precedente
 		$precedentData = file_get_contents('donnees.txt');
@@ -36,11 +36,16 @@
 		file_put_contents('donnees.txt', $nouvelledata);//on reenregistre le tout
 		//var_dump($precedentData);
 	}
-	recupDonnees();
+	recupDonneesFichier();
 	
-	$req = $bdd->prepare('SELECT Question FROM reponsesQuestionnaire = ?');
-	$req->execute(array($_GET['']));
-	
+	function recupDonneesBDD()
+	{
+		$bdd = new PDO('mysql:host=localhost;dbname=sondage', 'root', '');
+		$req = $bdd->prepare('SELECT * FROM questionnaire = ?');
+		$req->execute(array($_GET['question']));
+		$result = $req->fetchAll();
+	}
+	recupDonneesBDD();
 	
 	
 ?>

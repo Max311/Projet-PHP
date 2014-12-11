@@ -50,25 +50,24 @@ error_reporting(E_ALL);
 		
 		if ($req = $bdd->prepare ('SELECT COUNT(*) as count FROM questionnaire'))
 		{
-			foreach ($_POST as $key=>$value)
+			
+			if ($value == 'oui')
 			{
-				if ($value == 'oui')
-				{
-					$req = $bdd->prepare ('INSERT INTO questionnaire(question,oui,non) VALUES (:question, :oui, :non)');
-					$req->execute(array(
-						'question' => $key,
-						'oui' => 1,
-						'non' => 0 ));
-				}
-				else if ($value == 'non')
-				{
-					$req = $bdd->prepare ('INSERT INTO questionnaire (question,oui,non) VALUES (:question, :oui, :non)');
-					$req->execute(array(
-						'question' => $key,
-						'non' => 1,
-						'oui' => 0 ));
-				}
+				$req = $bdd->prepare ('INSERT INTO questionnaire(question,oui,non) VALUES (:question, :oui, :non)');
+				$req->execute(array(
+					'question' => $key,
+					'oui' => 1,
+					'non' => 0 ));
 			}
+			else if ($value == 'non')
+			{
+				$req = $bdd->prepare ('INSERT INTO questionnaire (question,oui,non) VALUES (:question, :oui, :non)');
+				$req->execute(array(
+					'question' => $key,
+					'non' => 1,
+					'oui' => 0 ));
+			}
+			
 		}
 	}
 	recupDonneesBDD();

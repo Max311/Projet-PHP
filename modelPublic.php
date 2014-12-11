@@ -46,6 +46,21 @@
 		$result = $req->fetchAll();
 	}
 	recupDonneesBDD();
-	
-	
-?>
+		{	
+			if ($value == 'oui')
+			{
+
+			
+				$req = $bdd->prepare ('INSERT INTO sondage(question,oui,non) ')
+				$req->execute(array(
+					'question' => $key
+					'oui' => ++ )) 
+			}
+			else if ($value == 'non')
+			{
+				$req = $bdd->prepare ('INSERT INTO sondage(question,oui,non) ')
+				$req->execute(array(
+					'question' => $key
+					'non' => ++ )) 
+			}
+		}

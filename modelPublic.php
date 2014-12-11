@@ -38,4 +38,9 @@
 	}
 	recupDonnees();
 	
+	$req = $bdd->prepare('SELECT Question FROM reponsesQuestionnaire = ?');
+	$req->execute(array($_GET['']));
+	
+	
+	
 ?>

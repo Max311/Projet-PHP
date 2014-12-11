@@ -1,4 +1,5 @@
 <?php
+echo "lkjhgokjhgfjhgf";
 	function recupDonneesFichier()
 	{
 		//chargement donnée precedente
@@ -40,25 +41,34 @@
 	
 	function recupDonneesBDD()
 	{
+		echo "sdfghjhgs";
 		$bdd = new PDO('mysql:host=localhost;dbname=sondage', 'root', '');
 		
+		$req = $bdd->prepare ('SELECT COUNT(*) as count FROM questionnaire');
+		$req->execute();
+		$tab = $req->fetch(PDO::FETCH_ASSOC);
+		var_dump($tab);
 		
-		if ($req = $bdd->prepare ('SELECT question FROM questionnaire') == NULL)
+		
+		if ($req = $bdd->prepare ('SELECT COUNT(*) as count FROM questionnaire'))
 		{
 			if ($value == 'oui')
 			{
-				$req = $bdd->prepare ('INSERT INTO questionnaire(question,oui,non) VALUES (:question, :oui, :non)')
+				$req = $bdd->prepare ('INSERT INTO questionnaire(question,oui,non) VALUES (:question, :oui, :non)');
 				$req->execute(array(
 					'question' => $key
-					'oui' => ++ )) 
+					'oui' => 1
+					'non' => 0 ));
 			}
 			else if ($value == 'non')
 			{
-				$req = $bdd->prepare ('INSERT INTO questionnaire (question,oui,non) VALUES (:question, :oui, :non)')
+				$req = $bdd->prepare ('INSERT INTO questionnaire (question,oui,non) VALUES (:question, :oui, :non)');
 				$req->execute(array(
 					'question' => $key
-					'non' => ++ )) 
+					'non' => 1
+					'oui' => 0 ));
 			}
 		}
 	}
 	recupDonneesBDD();
+	?>

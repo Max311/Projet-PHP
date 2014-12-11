@@ -54,16 +54,16 @@ error_reporting(E_ALL);
 			{
 				$req = $bdd->prepare ('INSERT INTO questionnaire(question,oui,non) VALUES (:question, :oui, :non)');
 				$req->execute(array(
-					'question' => $key
-					'oui' => 1
+					'question' => $key,
+					'oui' => 1,
 					'non' => 0 ));
 			}
 			else if ($value == 'non')
 			{
 				$req = $bdd->prepare ('INSERT INTO questionnaire (question,oui,non) VALUES (:question, :oui, :non)');
 				$req->execute(array(
-					'question' => $key
-					'non' => 1
+					'question' => $key,
+					'non' => 1,
 					'oui' => 0 ));
 			}
 		}

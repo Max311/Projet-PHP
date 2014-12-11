@@ -44,23 +44,20 @@
 		$req = $bdd->prepare('SELECT * FROM questionnaire = ?');
 		$req->execute(array($_GET['question']));
 		$result = $req->fetchAll();
+		
+		if ($value == 'oui')
+		{
+			$req = $bdd->prepare ('INSERT INTO sondage(question,oui,non) ')
+			$req->execute(array(
+				'question' => $key
+				'oui' => ++ )) 
+		}
+		else if ($value == 'non')
+		{
+			$req = $bdd->prepare ('INSERT INTO sondage(question,oui,non) ')
+			$req->execute(array(
+				'question' => $key
+				'non' => ++ )) 
+		}
 	}
 	recupDonneesBDD();
-		{	
-			if ($value == 'oui')
-			{
-
-			
-				$req = $bdd->prepare ('INSERT INTO sondage(question,oui,non) ')
-				$req->execute(array(
-					'question' => $key
-					'oui' => ++ )) 
-			}
-			else if ($value == 'non')
-			{
-				$req = $bdd->prepare ('INSERT INTO sondage(question,oui,non) ')
-				$req->execute(array(
-					'question' => $key
-					'non' => ++ )) 
-			}
-		}

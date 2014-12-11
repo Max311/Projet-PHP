@@ -69,4 +69,22 @@ error_reporting(E_ALL);
 		}
 	}
 	recupDonneesBDD();
+
+	function updateDonneesBDD()
+	{
+		if ($value == 'oui'){
+		$req= $bdd ->prepare('UPDATE questionnaire SET oui = :value ');
+		$req->execute(array(
+			'value' => ++));
+		}
+
+		else if ($value == 'non') 
+		{
+			$req=$bdd->prepare('UPDATE questionnaire SET non = :value');
+			$req->execute(array(
+				'value' => ++))
+		}
+	}
+
+	
 	?>

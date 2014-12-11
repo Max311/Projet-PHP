@@ -50,6 +50,7 @@ error_reporting(E_ALL);
 		
 		if ($req = $bdd->prepare ('SELECT COUNT(*) as count FROM questionnaire'))
 		{
+			
 			if ($value == 'oui')
 			{
 				$req = $bdd->prepare ('INSERT INTO questionnaire(question,oui,non) VALUES (:question, :oui, :non)');
@@ -66,11 +67,14 @@ error_reporting(E_ALL);
 					'non' => 1,
 					'oui' => 0 ));
 			}
+			
 		}
 	}
 	recupDonneesBDD();
-
-	function updateDonneesBDD()
+	
+	
+	
+	/*function updateDonneesBDD()
 	{
 		if ($value == 'oui'){
 		$req= $bdd ->prepare('UPDATE questionnaire SET oui = :value ');
@@ -84,7 +88,12 @@ error_reporting(E_ALL);
 			$req->execute(array(
 				'value' => ++));
 		}
+<<<<<<< HEAD
 	}
 
 
+=======
+	}*/
+	
+>>>>>>> 8d62a1a0985e23b92ebd06401c4b64f02030f5e9
 	?>

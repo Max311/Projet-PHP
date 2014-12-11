@@ -1,6 +1,5 @@
 <?php
 error_reporting(E_ALL);
-echo "lkjhgokjhgfjhgf";
 	function recupDonneesFichier()
 	{
 		//chargement donnée precedente
@@ -42,19 +41,14 @@ echo "lkjhgokjhgfjhgf";
 	
 	function recupDonneesBDD()
 	{
-		echo "sdfghjhgs";
 		$bdd = new PDO('mysql:host=localhost;dbname=sondage', 'root', '');
-		echo "sdfghjhgs";
 		$req = $bdd->prepare ('SELECT COUNT(*) as count FROM questionnaire');
-		echo "sdfghjhgs";
 		$req->execute();
-		echo "sdfghjhgs";
 		$tab = $req->fetch(PDO::FETCH_ASSOC);
-		echo "sdfghjhgs";
 		var_dump($tab);
 		
 		
-		/*if ($req = $bdd->prepare ('SELECT COUNT(*) as count FROM questionnaire'))
+		if ($req = $bdd->prepare ('SELECT COUNT(*) as count FROM questionnaire'))
 		{
 			if ($value == 'oui')
 			{
@@ -72,7 +66,7 @@ echo "lkjhgokjhgfjhgf";
 					'non' => 1
 					'oui' => 0 ));
 			}
-		}*/
+		}
 	}
 	recupDonneesBDD();
 	?>

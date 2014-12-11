@@ -41,23 +41,24 @@
 	function recupDonneesBDD()
 	{
 		$bdd = new PDO('mysql:host=localhost;dbname=sondage', 'root', '');
-		$req = $bdd->prepare('SELECT * FROM questionnaire = ?');
-		$req->execute(array($_GET['question']));
-		$result = $req->fetchAll();
 		
-		if ($value == 'oui')
+		
+		if ($req = $bdd->prepare ('SELECT question FROM questionnaire') == NULL)
 		{
-			$req = $bdd->prepare ('INSERT INTO sondage(question,oui,non) ')
-			$req->execute(array(
-				'question' => $key
-				'oui' => ++ )) 
-		}
-		else if ($value == 'non')
-		{
-			$req = $bdd->prepare ('INSERT INTO sondage(question,oui,non) ')
-			$req->execute(array(
-				'question' => $key
-				'non' => ++ )) 
+			if ($value == 'oui')
+			{
+				$req = $bdd->prepare ('INSERT INTO questionnaire(question,oui,non) VALUES (:question, :oui, :non)')
+				$req->execute(array(
+					'question' => $key
+					'oui' => ++ )) 
+			}
+			else if ($value == 'non')
+			{
+				$req = $bdd->prepare ('INSERT INTO questionnaire (question,oui,non) VALUES (:question, :oui, :non)')
+				$req->execute(array(
+					'question' => $key
+					'non' => ++ )) 
+			}
 		}
 	}
 	recupDonneesBDD();

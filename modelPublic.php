@@ -82,9 +82,9 @@ error_reporting(E_ALL);
 		{
 			$req=$bdd->prepare('UPDATE questionnaire SET non = :value');
 			$req->execute(array(
-				'value' => ++))
+				'value' => ++));
 		}
 	}
 
-	
+
 	?>

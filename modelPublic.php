@@ -8,7 +8,6 @@ error_reporting(E_ALL);
 		$tab = $req->fetch(PDO::FETCH_ASSOC);
 		$req = $bdd->query('SELECT COUNT(*) AS nbrLignes FROM questionnaire');
 		$data = $req->fetch();
-		echo $data['nbrLignes'];
 		
 		foreach ($_POST as $key=>$value)
 		{
@@ -20,12 +19,12 @@ error_reporting(E_ALL);
 					$req->execute(array('question' => $key,'oui' => 1,'non' => 0 ));
 					echo "1";
 				}
-				/*else
+				else
 				{
-					$req= $bdd ->prepare('UPDATE questionnaire SET oui = :value ');
-					$req->execute(array('value' => ++));
+					$req=$bdd->prepare('UPDATE questionnaire SET oui = :value WHERE question = :key');
+					$req->execute(array('value' => 'value'+1, 'key' => $key));
 					echo "2";
-				}*/
+				}
 			}
 			elseif ($value == 'non')
 			{
@@ -35,12 +34,12 @@ error_reporting(E_ALL);
 					$req->execute(array('question' => $key,'non' => 1,'oui' => 0 ));
 					echo "3";
 				}
-				/*else
+				else
 				{
-					$req=$bdd->prepare('UPDATE questionnaire SET non = :value');
-					$req->execute(array('value' => ++));
+					$req=$bdd->prepare('UPDATE questionnaire SET non = :value WHERE question = :key');
+					$req->execute(array('value' => 'value'+1, 'key' => $key));
 					echo "4";
-				}*/
+				}
 			}
 			echo $key.$value.'<br>';
 		}

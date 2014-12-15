@@ -1,76 +1,50 @@
 <?php
 error_reporting(E_ALL);
-	function recupDonneesFichier()
-	{
-		//chargement donnée precedente
-		$precedentData = file_get_contents('donnees.txt');
-		if($precedentData == '')
-		{
-			$precedentData = array();//si vide pas de donnée
-		}
-		else
-		{
-			$precedentData = json_decode($precedentData, true);//donné au format json
-			
-		}
-		if(isset($precedentData['nbparticipants']))
-			$precedentData['nbparticipants']++;
-		else
-			$precedentData['nbparticipants'] = 1;
-		foreach ($_POST as $key=>$value)
-		{			
-			if($value == 'oui')
-			{
-				if(isset($precedentData[$key]))
-					$precedentData[$key]++;
-				else
-				{
-					$precedentData[$key] = 1;
-				}
-			}
-			else if(!isset($precedentData[$key]))
-			{
-				$precedentData[$key] = 0;
-			}
-		}
-		$nouvelledata = json_encode($precedentData, JSON_PRETTY_PRINT);//on reencode le tout en json
-		file_put_contents('donnees.txt', $nouvelledata);//on reenregistre le tout
-		//var_dump($precedentData);
-	}
-	recupDonneesFichier();
-	
 	function recupDonneesBDD()
 	{
-		$bdd = new PDO('mysql:host=localhost;dbname=sondage', 'root', '');
+		$bdd = new PDO('mysql:host=localhost;dbname=sondage', 'root', 'root');
 		$req = $bdd->prepare ('SELECT COUNT(*) as count FROM questionnaire');
 		$req->execute();
 		$tab = $req->fetch(PDO::FETCH_ASSOC);
-		var_dump($tab);
 		
 		
-		if ($req = $bdd->prepare ('SELECT COUNT(*) as count FROM questionnaire'))
+		foreach ($_POST as $key=>$value)
 		{
-			
 			if ($value == 'oui')
 			{
-				$req = $bdd->prepare ('INSERT INTO questionnaire(question,oui,non) VALUES (:question, :oui, :non)');
-				$req->execute(array(
-					'question' => $key,
-					'oui' => 1,
-					'non' => 0 ));
+				if ($req = $bdd->prepare ('SELECT COUNT(*) as count FROM questionnaire'))
+				{
+					$req = $bdd->prepare ('INSERT INTO questionnaire(question,oui,non) VALUES (:question, :oui, :non)');
+					$req->execute(array('question' => $key,'oui' => 1,'non' => 0 ));
+					echo "1";
+				}
+				/*else
+				{
+					$req= $bdd ->prepare('UPDATE questionnaire SET oui = :value ');
+					$req->execute(array('value' => ++));
+					echo "2";
+				}*/
 			}
-			else if ($value == 'non')
+			elseif ($value == 'non')
 			{
-				$req = $bdd->prepare ('INSERT INTO questionnaire (question,oui,non) VALUES (:question, :oui, :non)');
-				$req->execute(array(
-					'question' => $key,
-					'non' => 1,
-					'oui' => 0 ));
+				if ($req = $bdd->prepare ('SELECT COUNT(*) as count FROM questionnaire'))
+				{
+					$req = $bdd->prepare ('INSERT INTO questionnaire (question,oui,non) VALUES (:question, :oui, :non)');
+					$req->execute(array('question' => $key,'non' => 1,'oui' => 0 ));
+					echo "3";
+				}
+				/*else
+				{
+					$req=$bdd->prepare('UPDATE questionnaire SET non = :value');
+					$req->execute(array('value' => ++));
+					echo "4";
+				}*/
 			}
-			
+			echo $key.$value.'<br>';
 		}
 	}
 	recupDonneesBDD();
+<<<<<<< HEAD
 	
 	
 	
@@ -97,3 +71,6 @@ error_reporting(E_ALL);
 	
 >>>>>>> 8d62a1a0985e23b92ebd06401c4b64f02030f5e9
 	?>
+=======
+?>
+>>>>>>> 74ac8c850db91bb3925410524494f52b93444cfc

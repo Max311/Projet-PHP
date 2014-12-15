@@ -1,4 +1,3 @@
-<p>vbbb</p>
 <?php
 error_reporting(E_ALL);
 	function recupDonneesBDD()

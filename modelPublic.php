@@ -3,9 +3,9 @@ error_reporting(E_ALL);
 	function recupDonneesBDD()
 	{
 		$bdd = new PDO('mysql:host=localhost;dbname=sondage', 'root', 'root');
-		$test = $bdd->prepare ('SELECT COUNT(*)  FROM questionnaire');
-		$req = $test;
+		$req = $bdd->prepare ('SELECT COUNT(*)  FROM questionnaire');
 		$req->execute();
+		$test = $req
 		$tab = $req->fetch(PDO::FETCH_ASSOC);
 		
 		

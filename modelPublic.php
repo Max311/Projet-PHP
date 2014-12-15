@@ -9,6 +9,7 @@ error_reporting(E_ALL);
 		$req = $bdd->query('SELECT COUNT(*) AS nbrLignes FROM questionnaire');
 		$data = $req->fetch();
 		
+		
 		foreach ($_POST as $key=>$value)
 		{
 			if ($value == 'oui')
@@ -22,7 +23,7 @@ error_reporting(E_ALL);
 				else
 				{
 					$req=$bdd->prepare('UPDATE questionnaire SET oui = :value WHERE question = :key');
-					$req->execute(array('value' => 'value'+1, 'key' => $key));
+					$req->execute(array('value' => +1, 'key' => $key));
 					echo "2";
 				}
 			}
@@ -37,7 +38,7 @@ error_reporting(E_ALL);
 				else
 				{
 					$req=$bdd->prepare('UPDATE questionnaire SET non = :value WHERE question = :key');
-					$req->execute(array('value' => 'value'+1, 'key' => $key));
+					$req->execute(array('value' => +1, 'key' => $key));
 					echo "4";
 				}
 			}

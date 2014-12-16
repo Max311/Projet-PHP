@@ -1,0 +1,10 @@
+Dans le fichier index.php (a l'endroit indiqué), indiquez le chemin vers votre page de questionnaire a partir du fichier index.
+Votre questionnaire doit compter une question et deux reponses (affirmative et negative).
+
+Il se présentera sous la forme:
+<form method="post" action="Le chemin de votre page a la page modelPublic.php">
+Votre question
+Réponse1<INPUT type=radio name="numéro de question" value="oui">
+Réponse2<INPUT type=radio name="numéro de question" value="non">
+Votre bouton de validation
+</form>
